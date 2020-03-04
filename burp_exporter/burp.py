@@ -2,7 +2,7 @@ import os
 from dateutil.parser import isoparse
 from datetime import datetime, timezone
 from functools import reduce
-
+from time import strftime, localtime
 
 def _parse_backup_identifier(backup_identifier):
     """Parse string like '0000001 2019-12-14 10:13:45 +0100' into tuple (backup_number, datetime)"""
@@ -15,7 +15,7 @@ def _parse_backup_identifier(backup_identifier):
         raw_number, date, time, timezone = split
     elif(len(split) == 3):
         raw_number, date, time = split
-        timezone = "+0000"
+        timezone = strftime("%z", localtime()) # when there is no TZ in file, provide local timezone
 
     number = int(raw_number)
     dt = isoparse(f"{date} {time}{timezone}")
