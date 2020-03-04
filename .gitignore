@@ -1,0 +1,9 @@
+/.vscode/
+/venv/
+/spool/
+*.pyc
+__pycache__/
+/dist/
+/build/
+*.egg-info
+burp_exporter.code-workspace
